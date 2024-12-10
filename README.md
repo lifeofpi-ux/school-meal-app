@@ -28,3 +28,7 @@ git clone https://github.com/YOUR_USERNAME/school-meal-app.git
 ```
 
 2. 브라우저에서 index.html을 실행합니다. 
+
+## 로컬 개발 설정
+
+1. config.example.js 파일을 config.js로 복사합니다:

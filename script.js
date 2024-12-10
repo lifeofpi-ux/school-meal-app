@@ -1,5 +1,5 @@
-// API 키 설정
-const NEIS_API_KEY = '148e44ee66fe4d959d6ebe32b72a78ba';
+// API 키는 config.js에서 가져옴
+// const NEIS_API_KEY는 config.js에서 정의됨
 
 // 급식 정보 조회를 위한 메인 함수
 async function getMealInfo(schoolName, date) {
