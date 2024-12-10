@@ -114,8 +114,6 @@ async function searchMeal(schoolName, date) {
     return await getMealInfo(schoolName, date);
 }
 
-let currentDate = new Date();
-
 function showLoading() {
     document.getElementById('loadingSpinner').classList.remove('hidden');
 }
@@ -125,8 +123,15 @@ function hideLoading() {
 }
 
 function navigateDay(direction) {
+    const dateInput = document.getElementById('mealDate');
+    const currentDate = new Date(dateInput.value);
     currentDate.setDate(currentDate.getDate() + direction);
-    document.getElementById('mealDate').valueAsDate = currentDate;
+    
+    const year = currentDate.getFullYear();
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+    const day = String(currentDate.getDate()).padStart(2, '0');
+    
+    dateInput.value = `${year}-${month}-${day}`;
     searchMealHandler(true);
 }
 
@@ -239,7 +244,15 @@ function getRecentSchool() {
 
 // 페이지 로드 시 초기화 함수 수정
 window.onload = async function() {
-    document.getElementById('mealDate').valueAsDate = currentDate;
+    // 오늘 날짜로 초기화 (시간대 고려)
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+    
+    // YYYY-MM-DD 형식으로 날짜 설정
+    document.getElementById('mealDate').value = `${year}-${month}-${day}`;
+    
     loadSavedSchools();
     
     // 최근 조회한 학교 정보 불러오기
@@ -249,10 +262,7 @@ window.onload = async function() {
         document.getElementById('schoolSelect').value = recentSchool;
         
         // 오늘 날짜의 급식 정보 자동 조회
-        const today = new Date();
-        const formattedDate = today.getFullYear() +
-            String(today.getMonth() + 1).padStart(2, '0') +
-            String(today.getDate()).padStart(2, '0');
+        const formattedDate = `${year}${month}${day}`;
             
         showLoading();
         try {
