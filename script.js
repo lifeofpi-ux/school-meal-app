@@ -1,7 +1,5 @@
-// GitHub Actions에서 환경변수를 주입하도록 설정
-if (process.env.NEIS_API_KEY) {
-    NEIS_API_KEY = process.env.NEIS_API_KEY;
-}
+// API 키 설정
+const NEIS_API_KEY = '148e44ee66fe4d959d6ebe32b72a78ba';
 
 // 급식 정보 조회를 위한 메인 함수
 async function getMealInfo(schoolName, date) {
