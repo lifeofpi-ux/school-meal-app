@@ -75,7 +75,7 @@ async function fetchMealInfo(schoolInfo, date) {
     }
 }
 
-// 저장된 학교 목록 가져오기
+// 저��된 학교 목록 가져오기
 function getSavedSchools() {
     const savedSchools = localStorage.getItem('savedSchools');
     return savedSchools ? JSON.parse(savedSchools) : [];
@@ -238,7 +238,7 @@ function getRecentSchool() {
 }
 
 // 페이지 로드 시 초기화 함수 수정
-window.onload = function() {
+window.onload = async function() {
     document.getElementById('mealDate').valueAsDate = currentDate;
     loadSavedSchools();
     
@@ -247,6 +247,22 @@ window.onload = function() {
     if (recentSchool) {
         document.getElementById('schoolName').value = recentSchool;
         document.getElementById('schoolSelect').value = recentSchool;
+        
+        // 오늘 날짜의 급식 정보 자동 조회
+        const today = new Date();
+        const formattedDate = today.getFullYear() +
+            String(today.getMonth() + 1).padStart(2, '0') +
+            String(today.getDate()).padStart(2, '0');
+            
+        showLoading();
+        try {
+            const result = await searchMeal(recentSchool, formattedDate);
+            hideLoading();
+            updateResult(result, false);
+        } catch (error) {
+            hideLoading();
+            handleError(error);
+        }
     }
 }
 
