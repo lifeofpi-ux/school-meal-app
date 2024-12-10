@@ -27,4 +27,4 @@ https://YOUR_USERNAME.github.io/school-meal-app/
 git clone https://github.com/YOUR_USERNAME/school-meal-app.git
 ```
 
-2. GitHub Pages를 사용한 웹 애플리케이션으로 배포합니다.
+2. 브라우저에서 index.html을 실행합니다. 
