@@ -1,0 +1,35 @@
+# 학교 급식 조회 웹앱
+
+전국 학교의 급식 정보를 조회할 수 있는 웹 애플리케이션입니다.
+
+## 주요 기능
+
+- 학교 검색 및 선택
+- 날짜별 급식 메뉴 조회
+- 자주 찾는 학교 저장
+- 모바일 친화적인 반응형 디자인
+
+## 사용 기술
+
+- HTML5
+- JavaScript (Vanilla JS)
+- TailwindCSS
+- 나이스 교육정보 개방 포털 API
+
+## 배포 URL
+
+https://YOUR_USERNAME.github.io/school-meal-app/
+
+## 로컬에서 실행하기
+
+1. 저장소를 클론합니다:
+```bash
+git clone https://github.com/YOUR_USERNAME/school-meal-app.git
+```
+
+2. 웹 서버를 사용하여 실행합니다. 예를 들어, Python의 내장 웹 서버를 사용할 수 있습니다:
+```bash
+python -m http.server
+```
+
+3. 브라우저에서 `http://localhost:8000`으로 접속합니다.
