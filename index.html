@@ -243,7 +243,42 @@
         </div>
     </div>
 
-    <script src="config.js"></script>
+    <!-- Creator Info Modal -->
+    <div id="creatorModal" class="fixed inset-0 z-50 hidden modal items-center justify-center p-4">
+        <div class="bg-white rounded-xl shadow-xl max-w-md w-full p-6 fade-in">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-bold">👨‍💻 제작자 정보</h2>
+                <button onclick="closeCreatorModal()" 
+                        class="text-gray-400 hover:text-red-600 transition-all duration-300 hover:rotate-90">
+                    <i class="ri-close-line text-2xl"></i>
+                </button>
+            </div>
+            
+            <div class="space-y-4 text-center pb-6">
+                <div class="text-2xl font-bold mb-4">라이프오브파이</div>
+                <div class="flex items-center justify-center space-x-2 text-gray-600">
+                    <span>☕ 커피 🥃 위스키 😌 무료함을 좋아합니다.</span>
+                </div>
+                <div class="text-gray-500 mt-4">
+                    <span 
+                       class="flex items-center justify-center space-x-2 hover:text-blue-500 transition-colors">
+                        <i class="ri-mail-line"></i>
+                        <span>연수요청: indend007@gmail.com</span>
+                      
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="fixed bottom-4 left-4 text-left z-50">
+        <button id="creatorButton" type="button"
+             class="inline-block glass-effect px-4 py-2 rounded-full text-sm text-gray-600 cursor-pointer hover:bg-white/90 transition-all duration-300">
+              제작자 : 라이프오브파이
+        </button>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>

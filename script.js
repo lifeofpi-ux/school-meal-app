@@ -75,7 +75,7 @@ async function fetchMealInfo(schoolInfo, date) {
     }
 }
 
-// 저장된 학교 목록 가져오기
+// 저��된 학교 목록 가져오기
 function getSavedSchools() {
     const savedSchools = localStorage.getItem('savedSchools');
     return savedSchools ? JSON.parse(savedSchools) : [];
@@ -183,6 +183,16 @@ function closeSettingsModal() {
     document.getElementById('settingsModal').classList.remove('flex');
 }
 
+function openCreatorModal() {
+    document.getElementById('creatorModal').classList.remove('hidden');
+    document.getElementById('creatorModal').classList.add('flex');
+}
+
+function closeCreatorModal() {
+    document.getElementById('creatorModal').classList.add('hidden');
+    document.getElementById('creatorModal').classList.remove('flex');
+}
+
 function saveSchoolHandler() {
     const schoolName = document.getElementById('savedSchoolName').value.trim();
     
@@ -254,6 +264,16 @@ window.onload = async function() {
     document.getElementById('mealDate').value = `${year}-${month}-${day}`;
     
     loadSavedSchools();
+    
+    // 제작자 버튼 이벤트 리스너 추가 - 수정된 부분
+    const creatorButton = document.getElementById('creatorButton');
+    if (creatorButton) {
+        creatorButton.addEventListener('click', function() {
+            const creatorModal = document.getElementById('creatorModal');
+            creatorModal.classList.remove('hidden');
+            creatorModal.classList.add('flex');
+        });
+    }
     
     // 최근 조회한 학교 정보 불러오기
     const recentSchool = getRecentSchool();
