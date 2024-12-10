@@ -27,9 +27,4 @@ https://YOUR_USERNAME.github.io/school-meal-app/
 git clone https://github.com/YOUR_USERNAME/school-meal-app.git
 ```
 
-2. 웹 서버를 사용하여 실행합니다. 예를 들어, Python의 내장 웹 서버를 사용할 수 있습니다:
-```bash
-python -m http.server
-```
-
-3. 브라우저에서 `http://localhost:8000`으로 접속합니다.
+2. GitHub Pages를 사용한 웹 애플리케이션으로 배포합니다.
