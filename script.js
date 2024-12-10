@@ -75,7 +75,7 @@ async function fetchMealInfo(schoolInfo, date) {
     }
 }
 
-// 저��된 학교 목록 가져오기
+// 저장된 학교 목록 가져오기
 function getSavedSchools() {
     const savedSchools = localStorage.getItem('savedSchools');
     return savedSchools ? JSON.parse(savedSchools) : [];
