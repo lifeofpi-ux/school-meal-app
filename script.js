@@ -1,24 +1,5 @@
-// 쿠키 관련 유틸리티 함수
-// function setCookie(name, value, days) {
-//     const d = new Date();
-//     d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
-//     const expires = "expires=" + d.toUTCString();
-//     document.cookie = name + "=" + value + ";" + expires + ";path=/";
-// }
-
-// function getCookie(name) {
-//     const decodedCookie = decodeURIComponent(document.cookie);
-//     const cookies = decodedCookie.split(';');
-//     const cookieName = name + "=";
-    
-//     for (let cookie of cookies) {
-//         cookie = cookie.trim();
-//         if (cookie.indexOf(cookieName) === 0) {
-//             return cookie.substring(cookieName.length, cookie.length);
-//         }
-//     }
-//     return "";
-// }
+// API 키 설정
+const NEIS_API_KEY = process.env.NEIS_API_KEY || '148e44ee66fe4d959d6ebe32b72a78ba';
 
 // 급식 정보 조회를 위한 메인 함수
 async function getMealInfo(schoolName, date) {
@@ -58,11 +39,10 @@ async function getMealInfo(schoolName, date) {
 
 // 학교 정보 조회 함수
 async function findSchool(name) {
-    const apiKey = "148e44ee66fe4d959d6ebe32b72a78ba";
     const url = "https://open.neis.go.kr/hub/schoolInfo";
     
     try {
-        const response = await fetch(`${url}?KEY=${apiKey}&Type=json&SCHUL_NM=${encodeURIComponent(name)}`);
+        const response = await fetch(`${url}?KEY=${NEIS_API_KEY}&Type=json&SCHUL_NM=${encodeURIComponent(name)}`);
         const data = await response.json();
         
         if (data.schoolInfo && data.schoolInfo[1] && data.schoolInfo[1].row.length > 0) {
@@ -77,12 +57,11 @@ async function findSchool(name) {
 
 // 급식 정보 조회 함수
 async function fetchMealInfo(schoolInfo, date) {
-    const apiKey = "148e44ee66fe4d959d6ebe32b72a78ba";
     const url = "https://open.neis.go.kr/hub/mealServiceDietInfo";
     
     try {
         const response = await fetch(
-            `${url}?KEY=${apiKey}&Type=json&ATPT_OFCDC_SC_CODE=${schoolInfo.ATPT_OFCDC_SC_CODE}&SD_SCHUL_CODE=${schoolInfo.SD_SCHUL_CODE}&MLSV_YMD=${date}`
+            `${url}?KEY=${NEIS_API_KEY}&Type=json&ATPT_OFCDC_SC_CODE=${schoolInfo.ATPT_OFCDC_SC_CODE}&SD_SCHUL_CODE=${schoolInfo.SD_SCHUL_CODE}&MLSV_YMD=${date}`
         );
         const data = await response.json();
         
