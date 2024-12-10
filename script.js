@@ -75,7 +75,7 @@ async function fetchMealInfo(schoolInfo, date) {
     }
 }
 
-// 저장된 학교 목록 가져오기
+// 저��된 학교 목록 가져오기
 function getSavedSchools() {
     const savedSchools = localStorage.getItem('savedSchools');
     return savedSchools ? JSON.parse(savedSchools) : [];
@@ -226,6 +226,31 @@ function deleteSelectedSchool() {
     }
 }
 
+// 최근 조회한 학교 저장
+function saveRecentSchool(schoolName) {
+    if (!schoolName) return;
+    localStorage.setItem('recentSchool', schoolName);
+}
+
+// 최근 조회한 학교 불러오기
+function getRecentSchool() {
+    return localStorage.getItem('recentSchool');
+}
+
+// 페이지 로드 시 초기화 함수 수정
+window.onload = function() {
+    document.getElementById('mealDate').valueAsDate = currentDate;
+    loadSavedSchools();
+    
+    // 최근 조회한 학교 정보 불러오기
+    const recentSchool = getRecentSchool();
+    if (recentSchool) {
+        document.getElementById('schoolName').value = recentSchool;
+        document.getElementById('schoolSelect').value = recentSchool;
+    }
+}
+
+// searchMealHandler 함수 수정
 async function searchMealHandler(isNavigation = false) {
     const schoolName = document.getElementById('schoolName').value.trim();
     const mealDate = document.getElementById('mealDate').value.replace(/-/g, '');
@@ -245,6 +270,11 @@ async function searchMealHandler(isNavigation = false) {
         const result = await searchMeal(schoolName, mealDate);
         hideLoading();
         updateResult(result, isNavigation);
+        
+        // 검색 성공 시 최근 조회 학교 저장
+        if (result.success) {
+            saveRecentSchool(schoolName);
+        }
     } catch (error) {
         hideLoading();
         handleError(error);
@@ -297,10 +327,4 @@ function handleError(error) {
 
 function formatDate(dateString) {
     return dateString.replace(/(\d{4})(\d{2})(\d{2})/, '$1년 $2월 $3일');
-}
-
-// 페이지 로드 시 초기화
-window.onload = function() {
-    document.getElementById('mealDate').valueAsDate = currentDate;
-    loadSavedSchools();
 }
